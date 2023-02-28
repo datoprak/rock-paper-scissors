@@ -1,0 +1,24 @@
+body {
+  background-color: #635985;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 64px;
+    color: #FCFFE7;
+    padding: 32px;
+}
+
+.score {
+    font-weight: bold;
+    font-size: 32px;
+    color: #FCFFE7;
+    padding: 16px;
+}

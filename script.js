@@ -1,3 +1,26 @@
+const btns = document.querySelectorAll("button");
+btns.forEach(btn => {
+  btn.addEventListener("click", getPlayerChoice);
+});
+
+const container = document.querySelector(".container");
+const score = document.querySelector(".score");
+const buttons = document.querySelector(".buttons");
+let playerScore = 0;
+let computerScore = 0;
+
+const text = document.createElement("div");
+container.appendChild(text);
+container.insertBefore(text, buttons);
+
+const replayButton = document.createElement("button");
+
+function getPlayerChoice(e) {
+  const playerChoice = e.target.className;
+  playRound(playerChoice);
+  return playerChoice;
+}
+
 function getComputerChoice() {
   let random = Math.floor(Math.random() * 3 + 1);
   if (random === 1) {
@@ -10,59 +33,62 @@ function getComputerChoice() {
   return random;
 }
 
-function playRound() {
+function gameOver() {
+  if (computerScore === 5 || playerScore === 5) {
+    container.removeChild(buttons);
+    score.textContent = "Game Over! You Lose!";
+    replayButton.classList.add("replay");
+    replayButton.textContent = "Replay";
+    container.appendChild(replayButton);
+    replayButton.addEventListener("click", replay);
+  }
+}
+
+function replay() {
+  container.removeChild(replayButton);
+  container.appendChild(buttons);
+  playerScore = 0;
+  computerScore = 0;
+  score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+}
+
+function playRound(playerChoice) {
   const computerChoice = getComputerChoice();
-  const playerChoice = prompt("Enter your choice:").toLowerCase();
+
   const loseText = `You lose! ${computerChoice} beat ${playerChoice}!`;
   const winText = `You win! ${playerChoice} beat ${computerChoice}!`;
+
   if (playerChoice === "rock" && computerChoice === "paper") {
-    alert(loseText);
-    return loseText;
+    text.textContent = loseText;
+    computerScore++;
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    gameOver();
   } else if (playerChoice === "rock" && computerChoice === "scissors") {
-    alert(winText);
-    return winText;
+    text.textContent = winText;
+    playerScore++;
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    gameOver();
   } else if (playerChoice === "paper" && computerChoice === "scissors") {
-    alert(loseText);
-    return loseText;
+    text.textContent = loseText;
+    computerScore++;
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    gameOver();
   } else if (playerChoice === "paper" && computerChoice === "rock") {
-    alert(winText);
-    return winText;
+    text.textContent = winText;
+    playerScore++;
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    gameOver();
   } else if (playerChoice === "scissors" && computerChoice === "rock") {
-    alert(loseText);
-    return loseText;
+    text.textContent = loseText;
+    computerScore++;
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    gameOver();
   } else if (playerChoice === "scissors" && computerChoice === "paper") {
-    alert(winText);
-    return winText;
+    text.textContent = winText;
+    playerScore++;
+    score.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    gameOver();
   } else if (playerChoice === computerChoice) {
-    alert("Draw!");
-    return "Draw!";
+    text.textContent = "Draw!";
   }
 }
-
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    const result = playRound();
-    if (result.slice(4, 5) === "w") {
-      playerScore++;
-    } else if (result.slice(4, 5) === "l") {
-      computerScore++;
-    }
-    alert(`Player ${playerScore} - ${computerScore} Computer`);
-  }
-
-  if (playerScore > computerScore) {
-    return alert(
-      `YOU WIN THE GAME!!!\nPlayer ${playerScore} - ${computerScore} Computer`
-    );
-  } else if (playerScore < computerScore) {
-    return alert(
-      `YOU LOSE THE GAME!!!\nPlayer ${playerScore} - ${computerScore} Computer`
-    );
-  } else {
-    return alert(`DRAW!!!\nPlayer ${playerScore} - ${computerScore} Computer`);
-  }
-}
-
