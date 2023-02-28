@@ -10,6 +10,7 @@ let playerScore = 0;
 let computerScore = 0;
 
 const text = document.createElement("div");
+text.classList.add("text");
 container.appendChild(text);
 container.insertBefore(text, buttons);
 
@@ -46,6 +47,7 @@ function gameOver() {
 
 function replay() {
   container.removeChild(replayButton);
+  text.setAttribute("style", "visibility: hidden");
   container.appendChild(buttons);
   playerScore = 0;
   computerScore = 0;
@@ -54,9 +56,15 @@ function replay() {
 
 function playRound(playerChoice) {
   const computerChoice = getComputerChoice();
+  text.setAttribute("style", "visibility: visible");
 
-  const loseText = `You lose! ${computerChoice} beat ${playerChoice}!`;
-  const winText = `You win! ${playerChoice} beat ${computerChoice}!`;
+  const upperComputerChoice =
+    computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+  const upperPlayerChoice =
+    playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+
+  const loseText = `You lose! ${upperComputerChoice} beat ${playerChoice}!`;
+  const winText = `You win! ${upperPlayerChoice} beat ${computerChoice}!`;
 
   if (playerChoice === "rock" && computerChoice === "paper") {
     text.textContent = loseText;

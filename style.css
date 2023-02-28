@@ -1,24 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 body {
   background-color: #635985;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
-    font-weight: bold;
-    font-size: 64px;
-    color: #FCFFE7;
-    padding: 32px;
+  font-weight: bold;
+  font-size: 64px;
+  color: #fcffe7;
+  padding: 32px;
 }
 
 .score {
-    font-weight: bold;
-    font-size: 32px;
-    color: #FCFFE7;
-    padding: 16px;
+  font-weight: bold;
+  font-size: 48px;
+  color: #fcffe7;
+  padding: 16px;
+}
+
+.text {
+  min-height: 37px;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fcffe7;
+  padding: 16px;
+}
+
+.buttons button {
+  height: 200px;
+  width: 200px;
+  margin: 16px;
+  background-color: #18122b;
+  font-size: 100px;
+}
+
+.replay {
+  background-color: #18122b;
+  color: #fcffe7;
+  width: 124px;
+  border-radius: 16px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 16px;
 }
